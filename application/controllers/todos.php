@@ -16,7 +16,7 @@ class Todos_Controller extends Base_Controller
 
 	public function get_hello_world() 
 	{
-		echo 'hello world!';
+		$this->layout->content = 'hello world!';
 	}
 
 }
