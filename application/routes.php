@@ -32,6 +32,20 @@
 |
 */
 
+// Nested controllers
+Route::controller( array(
+	// 'admin.dashboard',
+	// 'admin.properties',
+	
+
+) );
+
+// Non-nested controllers
+Route::controller( array(
+	'todos',
+
+) );
+
 Route::get('/', function()
 {
 	return View::make('home.index');
