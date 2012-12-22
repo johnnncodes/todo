@@ -14,4 +14,9 @@ class Todos_Controller extends Base_Controller
         $this->layout->content = 'im a content!';
 	}
 
+	public function get_hello_world() 
+	{
+		echo 'hello world!';
+	}
+
 }
