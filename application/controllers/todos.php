@@ -13,15 +13,7 @@ class Todos_Controller extends Base_Controller
 
  //        $this->layout->content = 'im a content!';
 	// }
-	
-	public function get_hello_world() 
-	{
-		$this->layout->content = 'hello world!';
-	}
 
-	public function get_hello_francie()
-	{
-		echo 'hello francie!';
 	}
 
 	public function get_index()
@@ -56,7 +48,5 @@ class Todos_Controller extends Base_Controller
 		} else {
 			return 'error';
 		}
-
-	}
 
 }
