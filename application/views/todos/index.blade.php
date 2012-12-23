@@ -1,29 +1,117 @@
 
-<div id="todo-form">
-	<h3>What to do?</h3>
-	{{ Form::open('todos', 'POST', array('id' => 'todo-form')) }}
-		{{ Form::text('name', '', array('id' => 'name')) }}
-		<br>
-		{{-- Form::submit('save') --}}
-	{{ Form::close() }}
+<div id="todo-con">
+
+	<div id="todo-form">
+		<h3>Simple Todo Web App</h3>
+		{{ Form::open('todos', 'POST', array('id' => 'todo-form')) }}
+			{{ Form::text('name', '', array('id' => 'name', 'placeholder' => 'What to do?')) }}
+		{{ Form::close() }}
+	</div>
+
+	<div id="todo-list-con">
+		@if ( $todos )
+			<ul id="todo-list">
+				@foreach($todos as $todo)
+				
+			    	<li id="todo-{{ $todo->id }}">
+			    		<div class="view">
+			    			<label class="edit" id="todo-{{ $todo->id }}" data-id="{{ $todo->id }}">{{ $todo->name }}</label>
+			    			<a href="#" class="delete-btn" data-id="{{ $todo->id }}">x</a>
+			    		</div>
+			    	</li>
+				
+				@endforeach
+			</ul>
+		@endif
+	</div>
+
+
+
 </div>
 
-<div id="todo-list-con">
-	@if ( $todos )
-		<ul id="todo-list">
-			@foreach($todos as $todo)
-			
-		    	<li id="todo-{{ $todo->id }}">
-		    		<div class="view">
-		    			<label>{{ $todo->name }}</label>
-		    			<a href="#" class="delete-btn" data-id="{{ $todo->id }}">x</a>
-		    		</div>
-		    	</li>
-			
-			@endforeach
-		</ul>
-	@endif
-</div>
+<p id="footer-text">Created By: John Kevin M. Basco</p>
+
+
+
+<!-- <div class="edit" id="div_1">Dolor</div> -->
+
+<script type="text/javascript">
+	//  $(document).ready(function() {
+ //     $('.edit').editable('http://localhost/todo/public/todos/', {
+ //     	// method : "PUT",
+ //     	// submitdata : { _method: 'PUT' }, // fake the PUT request
+ //     	// indicator : 'Saving...',
+ //        // tooltip   : 'Click to edit...',
+ //      //    callback : function(value, settings) {
+	//      //     console.log(this);
+	//      //     console.log(value);
+	//      //     console.log(settings);
+	//      // }
+ //     });
+ // });
+
+bindAllTabs(); // bind the .editable in initialization
+
+
+function bindAllTabs() {
+
+	$('.edit').editable(function(value, settings) { 
+	    
+
+	    //console.log(this);
+	    // console.log(value);
+	    //console.log(settings);
+
+
+     	// save data
+		$.ajax({
+		  	type: "POST",
+		  	url: "<?php action('todos'); ?>",
+		  	data: { name: value, id: $(this).data('id'), _method: 'PUT' }
+		}).done(function( data ) {
+		  	console.log(data);
+
+			var list = '';
+
+		  	$.each(data, function(i, data){
+		  		// console.log(data.name);
+
+		  		list = list + 
+		  		"<li id=" + data.id + ">"
+		  		+ "<div class='view'>"
+		  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+		  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
+		  		+ "</div>";
+		  		+ "<li>";
+
+		  	});
+
+		  	// console.log(list);
+
+		  	//$('ul#todo-list').html(list);
+
+		  
+		});
+
+
+	     return(value);
+
+	}, { 
+			cssclass : 'editable',
+	     //type    : 'textarea',
+	    // submit  : 'OK',
+	});
+
+}
+
+
+ 
+
+
+
+
+
+</script>
 
 
 
@@ -58,7 +146,7 @@
 			  		list = list + 
 			  		"<li id=" + data.id + ">"
 			  		+ "<div class='view'>"
-			  		+ "<label>" + data.name + "</label>"
+			  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
 			  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
 			  		+ "</div>";
 			  		+ "<li>";
@@ -68,6 +156,8 @@
 			  	// console.log(list);
 
 			  	$('ul#todo-list').html(list);
+
+			  	bindAllTabs(); // re-bind the .editable to the list
 
 			  
 			});
@@ -105,7 +195,7 @@
 			  		list = list + 
 			  		"<li id=" + data.id + ">"
 			  		+ "<div class='view'>"
-			  		+ "<label>" + data.name + "</label>"
+			  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
 			  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
 			  		+ "</div>";
 			  		+ "<li>";
@@ -115,6 +205,8 @@
 			  	console.log(list);
 
 			  	$('ul#todo-list').html(list);
+
+			  	bindAllTabs(); // re-bind the .editable to the list
 
 			});
 

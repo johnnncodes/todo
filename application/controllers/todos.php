@@ -3,27 +3,19 @@
 class Todos_Controller extends Base_Controller 
 {
 
-	// public function get_index()
-	// {
-	// 	//$this->layout = View::make('layouts.topics'); // override the default layout that is set in the base controller
-
-	// 	// $this->layout->page_title = "Welcome";
-
- //        //$this->layout->content = View::make('topics.index');
-
- //        $this->layout->content = 'im a content!';
-	// }
-
+	/**
+	 * Handles showing lists
+	 */
 	public function get_index()
 	{
 		$this->layout->content = View::make('todos.index')->with('todos', Todo::all());
 	}
 
-	// add
+	/**
+	 * Handles saving data
+	 */
 	public function post_index()
 	{
-		// return Input::get('name');
-
 		// validate
 		$input = Input::all();
 
@@ -47,10 +39,11 @@ class Todos_Controller extends Base_Controller
 		} else {
 			return 'error';
 		}
-
 	}
 
-	// delete
+	/**
+	 * Handles deleting data
+	 */
 	public function delete_index()
 	{
 		$todo = Todo::find(Input::get('id'));
@@ -61,4 +54,23 @@ class Todos_Controller extends Base_Controller
 
 	}
 
+	/**
+	 * Handles editing data
+	 */
+	public function put_index()
+	{
+		$id = Input::get('id');
+
+		$todo = Todo::find($id);
+		$todo->name = Input::get('name');
+	
+		if ($todo->save()) {
+			return 'good';
+		}
+	}
+
+
+
 }
+
+// end of file
