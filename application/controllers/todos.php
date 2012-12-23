@@ -14,13 +14,12 @@ class Todos_Controller extends Base_Controller
  //        $this->layout->content = 'im a content!';
 	// }
 
-	}
-
 	public function get_index()
 	{
-		$this->layout->content = View::make('todos.add');
+		$this->layout->content = View::make('todos.index')->with('todos', Todo::all());
 	}
 
+	// add
 	public function post_index()
 	{
 		// return Input::get('name');
@@ -44,9 +43,22 @@ class Todos_Controller extends Base_Controller
 		$todo->name = Input::get('name');
 
 		if ($todo->save()) {
-			return 'save successful';
+			return Response::eloquent(Todo::all());
 		} else {
 			return 'error';
 		}
+
+	}
+
+	// delete
+	public function delete_index()
+	{
+		$todo = Todo::find(Input::get('id'));
+
+		if ($todo->delete()) {
+			return Response::eloquent(Todo::all());
+		}
+
+	}
 
 }

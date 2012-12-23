@@ -50,7 +50,35 @@ table {
 
 
 
+#todo-list-con {
+	width: 600px;
+	background: red;
+}
 
+#todo-list {
+	margin: 0;
+
+}
+
+#todo-list li {
+	font-size: 24px;
+	border-bottom: 1px dotted #CCC;
+}
+
+#todo-list .view {
+	position: relative;
+}
+
+#todo-list li label {
+	padding: 15px;
+	font-size: 24px;
+}
+
+#todo-list .delete-btn {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+}
 
 
 
