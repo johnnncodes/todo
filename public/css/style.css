@@ -51,6 +51,99 @@ table {
 
 
 
+body {
+	background: #F0F0F0!important;
+}
 
+#todo-con {
+	width: 600px;
+	margin: 0 auto;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.15);
+	border: 1px solid #CCC;
+	position: relative;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	font-size: 24px;
+}
 
+#todo-form {
+	margin: 0;
+}
 
+#todo-form #name {
+	padding: 10px;
+	border: none;
+	background: rgba(0, 0, 0, 0.02);
+	z-index: 2;
+	box-shadow: none;
+	position: relative;
+	margin: 0;
+	width: 580px;
+	font-size: 24px;
+	font-style: italic;
+	border-bottom: 1px dotted #CCC;
+
+}
+
+#todo-form h3 {
+	text-align: center;
+}
+
+#todo-list-con {
+
+}
+
+#todo-list {
+	margin: 0;
+}
+
+#todo-list li {
+	font-size: 24px;
+	border-bottom: 1px dotted #CCC;
+	word-wrap: break-word;
+}
+
+#todo-list .view {
+	position: relative;
+}
+
+#todo-list li label {
+	padding: 15px;
+	font-size: 24px;
+}
+
+#todo-list .delete-btn {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+	font-weight: bold;
+}
+
+.editable {
+	margin: 0;
+}
+
+.editable input{
+	border: none;
+	background: white;
+	outline: none;
+	padding: 5px;
+	font-size: 24px;
+}
+
+#footer-text {
+	text-align: center;
+	color: #555;
+	margin-top: 10px;
+}
+
+#ajax-loader{
+	text-align: center;
+	display: none;
+}
+
+#ajax-loader p {
+	font-weight: bold;
+	font-size: 15px;
+	font-style: italic;
+}
