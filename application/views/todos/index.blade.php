@@ -1,31 +1,34 @@
-
 <div id="todo-con">
 
 	<div id="todo-form">
 		<h3>Simple Todo Web App</h3>
 		{{ Form::open('todos', 'POST', array('id' => 'todo-form')) }}
-			{{ Form::text('name', '', array('id' => 'name', 'placeholder' => 'What to do?')) }}
+			{{ Form::text('name', '', array('id' => 'name', 'placeholder' => 'What needs to be done?')) }}
 		{{ Form::close() }}
 	</div>
 
 	<div id="todo-list-con">
-		@if ( $todos )
-			<ul id="todo-list">
-				@foreach($todos as $todo)
-				
-			    	<li id="todo-{{ $todo->id }}">
-			    		<div class="view">
-			    			<label class="edit" id="todo-{{ $todo->id }}" data-id="{{ $todo->id }}">{{ $todo->name }}</label>
-			    			<a href="#" class="delete-btn" data-id="{{ $todo->id }}">x</a>
-			    		</div>
-			    	</li>
-				
-				@endforeach
-			</ul>
-		@endif
+		
+
+		<div id="ajax-loader">
+			<img src="{{ asset('img/ajax-loader.gif'); }}">
+			<p>Loading...Please wait</p>
+		</div>
+
+		<ul id="todo-list">
+			@foreach($todos as $todo)
+			
+		    	<li id="todo-{{ $todo->id }}">
+		    		<div class="view">
+		    			<label class="edit" id="todo-{{ $todo->id }}" data-id="{{ $todo->id }}">{{ $todo->name }}</label>
+		    			<a href="#" class="delete-btn" data-id="{{ $todo->id }}">x</a>
+		    		</div>
+		    	</li>
+			
+			@endforeach
+		</ul>
+	
 	</div>
-
-
 
 </div>
 
@@ -125,10 +128,17 @@ function bindAllTabs() {
     	/**
     	 * add
     	 */
-    	$('form#todo-form').submit(function(){
+    	$('form#todo-form').submit(function() {
+
     		console.log('form submit');
 
+    		$('ul#todo-list').hide();
+
+    		$('div#ajax-loader').show();
+
     		var name = $('#name').val();
+
+    		$('#name').val("");	
 
     		// save data
     		$.ajax({
@@ -136,28 +146,38 @@ function bindAllTabs() {
 			  	url: "<?php action('todos'); ?>",
 			  	data: { name: name }
 			}).done(function( data ) {
+
 			  	console.log(data);
 
-				var list = '';
+			  	if (data !== 'failed') { // if validation in the server didn't failed
 
-			  	$.each(data, function(i, data){
-			  		// console.log(data.name);
+			  		var list = '';
 
-			  		list = list + 
-			  		"<li id=" + data.id + ">"
-			  		+ "<div class='view'>"
-			  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
-			  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
-			  		+ "</div>";
-			  		+ "<li>";
+				  	$.each(data, function(i, data){
+				  		// console.log(data.name);
 
-			  	});
+				  		list = list + 
+				  		"<li id=" + data.id + ">"
+				  		+ "<div class='view'>"
+				  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+				  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
+				  		+ "</div>";
+				  		+ "<li>";
 
-			  	// console.log(list);
+				  	});
 
-			  	$('ul#todo-list').html(list);
+				  	// console.log(list);
 
-			  	bindAllTabs(); // re-bind the .editable to the list
+				  	$('ul#todo-list').html(list);
+
+				  	bindAllTabs(); // re-bind the .editable to the list
+
+				  	$('div#ajax-loader').hide();
+				  	$('ul#todo-list').show();
+
+			  	};
+
+				
 
 			  
 			});
@@ -173,6 +193,12 @@ function bindAllTabs() {
 		// $('ul#todo-list').find('a.delete-btn').live('click', function() { // deprecated as of jquery 1.7
 		$('ul#todo-list').on('click', 'a.delete-btn', function(event) {
     		
+
+
+			$('ul#todo-list').hide();
+
+    		$('div#ajax-loader').show();
+
     		$this = $(this); // cache the current $('a.delete-btn');
 
     		// console.log($this.data('id'));
@@ -208,12 +234,14 @@ function bindAllTabs() {
 
 			  	bindAllTabs(); // re-bind the .editable to the list
 
+			  	$('ul#todo-list').show();
+
+    			$('div#ajax-loader').hide();
+
 			});
 
     		return false;
     	});
-
-
 
 	}); 
 

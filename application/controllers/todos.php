@@ -27,7 +27,7 @@ class Todos_Controller extends Base_Controller
 
 		if ($validation->fails())
 		{
-		    return 'validation failed!';
+		    return 'failed';
 		}
 
 		// save

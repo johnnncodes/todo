@@ -137,3 +137,13 @@ body {
 	margin-top: 10px;
 }
 
+#ajax-loader{
+	text-align: center;
+	display: none;
+}
+
+#ajax-loader p {
+	font-weight: bold;
+	font-size: 15px;
+	font-style: italic;
+}
