@@ -37,7 +37,7 @@ class Todos_Controller extends Base_Controller
 		if ($todo->save()) {
 			return Response::eloquent(Todo::all());
 		} else {
-			return 'error';
+			return 'failed';
 		}
 	}
 
@@ -73,4 +73,5 @@ class Todos_Controller extends Base_Controller
 
 }
 
-// end of file
+// End of file
+// @author John Kevin M. Basco

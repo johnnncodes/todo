@@ -37,7 +37,6 @@ Route::controller( array(
 	// 'admin.dashboard',
 	// 'admin.properties',
 	
-
 ) );
 
 // Non-nested controllers
@@ -46,10 +45,12 @@ Route::controller( array(
 
 ) );
 
-Route::get('/', function()
-{
-	return View::make('home.index');
-});
+Route::get('/', array('uses' => 'todos@index')); 
+
+// Route::get('/', function()
+// {
+// 	return View::make('home.index');
+// });
 
 /*
 |--------------------------------------------------------------------------

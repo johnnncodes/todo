@@ -11,12 +11,7 @@
 	<![endif]-->
 
 	{{ Asset::container('bootstrapper')->styles() }}
-	{{ Asset::container('bootstrapper')->scripts() }}
-
-  <script type="text/javascript" src="{{ asset('js/jquery-1.8.2.js'); }}"></script>
-
-  <script type="text/javascript" src="{{ asset('js/jeditable.js'); }}"></script>
-
+	
 </head>
 <body>
 
@@ -26,5 +21,18 @@
 
     </div> <!-- /container -->
 
+    {{ Asset::container('bootstrapper')->scripts() }}
+
+	<script type="text/javascript" src="{{ asset('js/jquery-1.8.2.js'); }}"></script>
+
+	<script type="text/javascript" src="{{ asset('js/jeditable.js'); }}"></script>
+
+	<script type="text/javascript" src="{{ asset('js/todo.js'); }}"></script>
+
 </body>
 </html>
+
+<!--
+// End of file
+// @author John Kevin M. Basco
+-->
