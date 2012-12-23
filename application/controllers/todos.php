@@ -3,25 +3,75 @@
 class Todos_Controller extends Base_Controller 
 {
 
+	/**
+	 * Handles showing lists
+	 */
 	public function get_index()
 	{
-		//$this->layout = View::make('layouts.topics'); // override the default layout that is set in the base controller
-
-		// $this->layout->page_title = "Welcome";
-
-        //$this->layout->content = View::make('topics.index');
-
-        $this->layout->content = 'im a content!';
+		$this->layout->content = View::make('todos.index')->with('todos', Todo::all());
 	}
+
+	/**
+	 * Handles saving data
+	 */
+	public function post_index()
+	{
+		// validate
+		$input = Input::all();
+
+		$rules = array(
+		    'name'  => 'required|max:200',
+		);
+
+		$validation = Validator::make($input, $rules);
+
+		if ($validation->fails())
+		{
+		    return 'failed';
+		}
+
+		// save
+		$todo = new Todo;
+		$todo->name = Input::get('name');
+
+		if ($todo->save()) {
+			return Response::eloquent(Todo::all());
+		} else {
+			return 'failed';
+		}
+	}
+
+	/**
+	 * Handles deleting data
+	 */
+	public function delete_index()
+	{
+		$todo = Todo::find(Input::get('id'));
+
+		if ($todo->delete()) {
+			return Response::eloquent(Todo::all());
+		}
+
+	}
+
+	/**
+	 * Handles editing data
+	 */
+	public function put_index()
+	{
+		$id = Input::get('id');
+
+		$todo = Todo::find($id);
+		$todo->name = Input::get('name');
 	
-	public function get_hello_world() 
-	{
-		$this->layout->content = 'hello world!';
+		if ($todo->save()) {
+			return 'good';
+		}
 	}
 
-	public function get_hello_francie()
-	{
-		echo 'hello francie!';
-	}
+
 
 }
+
+// End of file
+// @author John Kevin M. Basco

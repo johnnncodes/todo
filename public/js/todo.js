@@ -1,0 +1,161 @@
+(function($){ // to avoid conflicts
+
+	$(function() { // document.ready 
+
+		var todosUrl = 'http://localhost/todo/public/index.php/todos'; // change this to your URL
+
+    	// initialize
+    	bindAllTabs(); // bind the .editable in initialization
+
+    	/**
+    	 * Binds .editable to the list
+    	 * We call this every time we refresh/add lists dynamically via js to bind the .editable
+    	 */
+		function bindAllTabs() {
+
+			$('.edit').editable(function(value, settings) { 
+			    
+			    // console.log(this);
+			    // console.log(value);
+			    // console.log(settings);
+
+		     	// save data
+				$.ajax({
+				  	type: "POST",
+				  	url: todosUrl,
+				  	data: { name: value, id: $(this).data('id'), _method: 'PUT' }
+				}).done(function( data ) {
+
+				  	// success, do something here if you want
+
+				});
+
+			    return(value);
+
+			}, { 
+					cssclass : 'editable',
+			     	// type    : 'textarea',
+			    	// submit  : 'OK',
+			});
+
+		}
+
+    	/**
+    	 * add
+    	 */
+    	$('form#todo-form').submit(function() {
+
+    		$('ul#todo-list').hide();
+
+    		$('div#ajax-loader').show();
+
+    		var name = $('#name').val();
+
+    		$('#name').val("");	
+
+    		// save data in the server
+    		$.ajax({
+			  	type: "POST",
+			  	url: todosUrl,
+			  	data: { name: name }
+			}).done(function( data ) {
+
+			  	// console.log(data);
+
+			  	if (data !== 'failed') { // if validation in the server didn't failed
+
+			  		var list = '';
+
+				  	$.each(data, function(i, data) {
+
+				  		// console.log(data.name);
+
+				  		list = list + 
+				  		"<li id=" + data.id + ">"
+				  		+ "<div class='view'>"
+				  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+				  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
+				  		+ "</div>";
+				  		+ "<li>";
+
+				  	});
+
+				  	// console.log(list);
+
+				  	$('ul#todo-list').html(list);
+
+				  	bindAllTabs(); // re-bind the .editable to the list
+
+				  	$('div#ajax-loader').hide();
+
+				  	$('ul#todo-list').show();
+
+			  	};
+
+			});
+
+    		return false; // to avoid submitting the form
+
+    	});
+
+
+    	/**
+    	 * edit
+    	 */
+		// $('ul#todo-list').find('a.delete-btn').live('click', function() { // deprecated as of jquery 1.7
+		$('ul#todo-list').on('click', 'a.delete-btn', function(event) {
+    		
+			$('ul#todo-list').hide();
+
+    		$('div#ajax-loader').show();
+
+    		$this = $(this); // cache the current $('a.delete-btn');
+
+    		var id = $this.data('id');
+
+			// delete the list
+			$.ajax({
+			  	type: "DELETE",
+			  	url: todosUrl,
+			  	data: { id: id }
+			}).done(function( data ) {
+
+			  	// console.log(data);
+	
+			  	var list = '';
+
+			  	$.each(data, function(i, data) {
+
+			  		// console.log(data.name);
+
+			  		list = list + 
+			  		"<li id=" + data.id + ">"
+			  		+ "<div class='view'>"
+			  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+			  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
+			  		+ "</div>";
+			  		+ "<li>";
+
+			  	});
+
+			  	// console.log(list);
+
+			  	$('ul#todo-list').html(list);
+
+			  	bindAllTabs(); // re-bind the .editable to the list
+
+			  	$('ul#todo-list').show();
+
+    			$('div#ajax-loader').hide();
+
+			});
+
+    		return false;
+    	});
+
+	}); 
+
+})(jQuery);
+
+// End of file
+// @author John Kevin M. Basco

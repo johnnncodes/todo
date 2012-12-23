@@ -3,15 +3,36 @@
 <head>
 	<meta charset=utf-8 />
 	<title>{{ $page_title }}</title>
-	<link rel="stylesheet" type="text/css" media="screen" href="css/master.css" />
-	<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> -->
+
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/style.css'); }}" />
+
 	<!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+
+	{{ Asset::container('bootstrapper')->styles() }}
+	
 </head>
 <body>
 
-	{{ $content }}
+    <div class="container">
+
+      {{ $content }}
+
+    </div> <!-- /container -->
+
+    {{ Asset::container('bootstrapper')->scripts() }}
+
+	<script type="text/javascript" src="{{ asset('js/jquery-1.8.2.js'); }}"></script>
+
+	<script type="text/javascript" src="{{ asset('js/jeditable.js'); }}"></script>
+
+	<script type="text/javascript" src="{{ asset('js/todo.js'); }}"></script>
 
 </body>
 </html>
+
+<!--
+// End of file
+// @author John Kevin M. Basco
+-->
