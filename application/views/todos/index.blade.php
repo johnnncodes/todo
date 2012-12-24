@@ -2,13 +2,19 @@
 
 	<div id="todo-form">
 		<h3>Simple Todo Web App</h3>
+
+		<div class="alert alert-error errors">
+		  <p>Todo Required</p>
+		</div>
+		
+
 		{{ Form::open('todos', 'POST', array('id' => 'todo-form')) }}
 			{{ Form::text('name', '', array('id' => 'name', 'placeholder' => 'What needs to be done?')) }}
 		{{ Form::close() }}
 	</div>
 
 	<div id="todo-list-con">
-		
+
 		<div id="ajax-loader">
 			<img src="{{ asset('img/ajax-loader.gif'); }}">
 			<p>Loading...Please wait</p>

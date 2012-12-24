@@ -29,6 +29,8 @@
 				  	// ajax request success, do something here if you want
 				  	console.log(data);
 
+				  	$('.errors').hide();
+
 				  	if (data === 'error') {
 				  		console.log('Updating in database failed. Please report error to basco.johnkevin@gmail.com');
 				  	}
@@ -52,6 +54,14 @@
     	 * add
     	 */
     	$('form#todo-form').submit(function() {
+
+    		if ($('form#todo-form').find('input#name').val() === '') {
+    			// alert('Input a todo first!');
+    			$('.errors').show();
+    			return false; // stop execution of code
+    		};
+
+    		$('.errors').hide();
 
     		$('ul#todo-list').hide();
 
@@ -125,6 +135,8 @@
 		// $('ul#todo-list').find('a.delete-btn').live('click', function() { // deprecated as of jquery 1.7
 		$('ul#todo-list').on('click', 'a.delete-btn', function(event) {
     		
+			$('.errors').hide();
+
 			$('ul#todo-list').hide();
 
     		$('div#ajax-loader').show();
