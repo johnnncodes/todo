@@ -2,13 +2,18 @@
 
 class Todos_Controller extends Base_Controller 
 {
+	public function __construct()
+    {
+    	header('Access-Control-Allow-Origin: *'); // allow cross domain origin access
+        parent::__construct();
+    }
 
 	/**
 	 * Handles showing lists
 	 */
 	public function get_index()
 	{
-		$this->layout->content = View::make('todos.index')->with('todos', Todo::all());
+		$this->layout->content = View::make('todos.index')->with('todos', Todo::order_by('created_at', 'desc')->get());
 	}
 
 	/**
@@ -35,9 +40,9 @@ class Todos_Controller extends Base_Controller
 		$todo->name = Input::get('name');
 
 		if ($todo->save()) {
-			return Response::eloquent(Todo::all());
+			return Response::eloquent(Todo::order_by('created_at', 'desc')->get());
 		} else {
-			return 'failed';
+			return 'error';
 		}
 	}
 
@@ -49,9 +54,10 @@ class Todos_Controller extends Base_Controller
 		$todo = Todo::find(Input::get('id'));
 
 		if ($todo->delete()) {
-			return Response::eloquent(Todo::all());
+			return Response::eloquent(Todo::order_by('created_at', 'desc')->get());
+		} else {
+			return 'error';
 		}
-
 	}
 
 	/**
@@ -65,7 +71,9 @@ class Todos_Controller extends Base_Controller
 		$todo->name = Input::get('name');
 	
 		if ($todo->save()) {
-			return 'good';
+			return 'success';
+		} else {
+			return 'error';
 		}
 	}
 

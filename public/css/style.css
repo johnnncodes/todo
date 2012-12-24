@@ -133,8 +133,11 @@ body {
 
 #footer-text {
 	text-align: center;
-	color: #555;
 	margin-top: 10px;
+}
+
+#footer-text a {
+	color: #555;
 }
 
 #ajax-loader{
@@ -146,4 +149,19 @@ body {
 	font-weight: bold;
 	font-size: 15px;
 	font-style: italic;
+}
+
+#todo-form .alert-error {
+	margin: 10px;
+}
+
+#todo-form .alert-error p {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	margin: 0;
+}
+
+.errors {
+	display: none;
 }

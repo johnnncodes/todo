@@ -1,7 +1,7 @@
 todo
 ====
 
-Version 1.3
+Version 1.4
 
 A simple web app for managing todo's. This web app only provides simple functionalities. This is only made for fun in learning git workflow, jquery/javascript and Laravel 3. The code is open sourced to allow public contribution and to allow other dev's have an open source code to read for learning purposes.
 
@@ -9,10 +9,22 @@ Live Demo - http://makingfriends.elementfx.com/todo/public/
 
 Screenshot: http://imageshack.us/photo/my-images/811/webappg.png/
 
+Instructions:
+* To add a todo - Type the todo in the textbox and press enter to save
+* To edit a todo - Click the todo and it will become a textbox, edit the todo and press enter to save
+* To delete a todo - Click the x icon in the right side of the todo
+
 Feature Overview
-* Add todo's
+* Add todo's 
 * Edit todo's
 * Delete todo's
+
+Road Map for version 2.0
+* Javascript Validations
+* User Management
+* Feature to set time of the todo
+* Feature to remind the user about his/her todo through email
+* Sort the todo from newest to oldest
 
 License
 

@@ -2,13 +2,19 @@
 
 	<div id="todo-form">
 		<h3>Simple Todo Web App</h3>
+
+		<div class="alert alert-error errors">
+		  <p>Todo Required</p>
+		</div>
+		
+
 		{{ Form::open('todos', 'POST', array('id' => 'todo-form')) }}
-			{{ Form::text('name', '', array('id' => 'name', 'placeholder' => 'What needs to be done?')) }}
+			{{ Form::text('name', '', array('id' => 'name', 'placeholder' => 'What needs to be done?', 'autofocus' => 'autofocus')) }}
 		{{ Form::close() }}
 	</div>
 
 	<div id="todo-list-con">
-		
+
 		<div id="ajax-loader">
 			<img src="{{ asset('img/ajax-loader.gif'); }}">
 			<p>Loading...Please wait</p>
@@ -31,7 +37,7 @@
 
 </div>
 
-<p id="footer-text">Created By: John Kevin M. Basco</p>
+<p id="footer-text"><a href="https://www.odesk.com/users/Web-and-Mobile-Developer_~01f1dbcff7ace73fae?tot=1&pos=0" target="_blank">Created By: John Kevin M. Basco</a></p>
 
 <!--
 // End of file
