@@ -26,7 +26,15 @@
 				  	data: { name: value, id: $(this).data('id'), _method: 'PUT' }
 				}).done(function( data ) {
 
-				  	// success, do something here if you want
+				  	// ajax request success, do something here if you want
+				  	console.log(data);
+
+				  	if (data === 'error') {
+				  		console.log('Updating in database failed. Please report error to basco.johnkevin@gmail.com');
+				  	}
+
+		
+
 
 				});
 
@@ -60,7 +68,7 @@
 			  	data: { name: name }
 			}).done(function( data ) {
 
-			  	// console.log(data);
+			  	console.log(data);
 
 			  	if (data !== 'failed') { // if validation in the server didn't failed
 
@@ -90,7 +98,19 @@
 
 				  	$('ul#todo-list').show();
 
-			  	};
+			  	} else if(data === 'failed') {
+			  		$('div#ajax-loader').hide();
+
+				  	$('ul#todo-list').show();
+
+				  	console.log('Validation failed. Are you cheating??!');
+			  	} else {
+			  		$('div#ajax-loader').hide();
+
+				  	$('ul#todo-list').show();
+
+				  	console.log('Saving to database failed. Please report error to basco.johnkevin@gmail.com');
+			  	}
 
 			});
 
@@ -120,33 +140,45 @@
 			  	data: { id: id, _method: 'DELETE' }
 			}).done(function( data ) {
 
-			  	 console.log(data);
+			  	console.log(data);
+
+			  	if (data !== 'error') {
+
+			  		var list = '';
+
+				  	$.each(data, function(i, data) {
+
+				  		// console.log(data.name);
+
+				  		list = list + 
+				  		"<li id=" + data.id + ">"
+				  		+ "<div class='view'>"
+				  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+				  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
+				  		+ "</div>";
+				  		+ "<li>";
+
+				  	});
+
+				  	// console.log(list);
+
+				  	$('ul#todo-list').html(list);
+
+				  	bindAllTabs(); // re-bind the .editable to the list
+
+				  	$('div#ajax-loader').hide();
+
+				  	$('ul#todo-list').show();
+
+			  	} else {
+			  		$('div#ajax-loader').hide();
+
+				  	$('ul#todo-list').show();
+
+				  	console.log('Deleting data in database failed. Please report error to basco.johnkevin@gmail.com');
+			  	}
 	
-			  	var list = '';
-
-			  	$.each(data, function(i, data) {
-
-			  		// console.log(data.name);
-
-			  		list = list + 
-			  		"<li id=" + data.id + ">"
-			  		+ "<div class='view'>"
-			  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
-			  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
-			  		+ "</div>";
-			  		+ "<li>";
-
-			  	});
-
-			  	// console.log(list);
-
-			  	$('ul#todo-list').html(list);
-
-			  	bindAllTabs(); // re-bind the .editable to the list
-
-			  	$('div#ajax-loader').hide();
-
-			  	$('ul#todo-list').show();
+			  	
 
     			
 

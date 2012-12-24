@@ -42,7 +42,7 @@ class Todos_Controller extends Base_Controller
 		if ($todo->save()) {
 			return Response::eloquent(Todo::all());
 		} else {
-			return 'failed';
+			return 'error';
 		}
 	}
 
@@ -55,8 +55,9 @@ class Todos_Controller extends Base_Controller
 
 		if ($todo->delete()) {
 			return Response::eloquent(Todo::all());
+		} else {
+			return 'error';
 		}
-
 	}
 
 	/**
@@ -70,7 +71,9 @@ class Todos_Controller extends Base_Controller
 		$todo->name = Input::get('name');
 	
 		if ($todo->save()) {
-			return 'good';
+			return 'success';
+		} else {
+			return 'error';
 		}
 	}
 
