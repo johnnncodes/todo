@@ -1,7 +1,7 @@
 todo
 ====
 
-Version 1.3
+Version 1.4
 
 A simple web app for managing todo's. This web app only provides simple functionalities. This is only made for fun in learning git workflow, jquery/javascript and Laravel 3. The code is open sourced to allow public contribution and to allow other dev's have an open source code to read for learning purposes.
 
