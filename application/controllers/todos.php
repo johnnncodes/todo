@@ -2,6 +2,11 @@
 
 class Todos_Controller extends Base_Controller 
 {
+	public function __construct()
+    {
+    	header('Access-Control-Allow-Origin: *'); // allow cross domain origin access
+        parent::__construct();
+    }
 
 	/**
 	 * Handles showing lists
