@@ -2,8 +2,8 @@
 
 	$(function() { // document.ready 
 
-		var todosUrl = 'http://localhost/todo/public/index.php/todos'; // change this to your URL
-
+		//var todosUrl = 'http://makingfriends.elementfx.com/todo/public/index.php/todos/'; // change this to your URL
+		var todosUrl = 'http://localhost/todo/public/todos/'; // change this to your URL
     	// initialize
     	bindAllTabs(); // bind the .editable in initialization
 
@@ -115,12 +115,12 @@
 
 			// delete the list
 			$.ajax({
-			  	type: "DELETE",
+			  	type: "POST",
 			  	url: todosUrl,
-			  	data: { id: id }
+			  	data: { id: id, _method: 'DELETE' }
 			}).done(function( data ) {
 
-			  	// console.log(data);
+			  	 console.log(data);
 	
 			  	var list = '';
 
@@ -144,9 +144,11 @@
 
 			  	bindAllTabs(); // re-bind the .editable to the list
 
+			  	$('div#ajax-loader').hide();
+
 			  	$('ul#todo-list').show();
 
-    			$('div#ajax-loader').hide();
+    			
 
 			});
 
