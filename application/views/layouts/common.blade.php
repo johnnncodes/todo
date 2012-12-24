@@ -21,6 +21,8 @@
 
     </div> <!-- /container -->
 
+    <script type="text/javascript" src="{{ asset('js/plugins.js'); }}"></script>
+
     {{ Asset::container('bootstrapper')->scripts() }}
 
 	<script type="text/javascript" src="{{ asset('js/jquery-1.8.2.js'); }}"></script>
@@ -28,6 +30,8 @@
 	<script type="text/javascript" src="{{ asset('js/jeditable.js'); }}"></script>
 
 	<script type="text/javascript" src="{{ asset('js/todo.js'); }}"></script>
+
+
 
 </body>
 </html>
