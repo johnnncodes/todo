@@ -19,6 +19,7 @@ Road Map for version 2.0
 * User Management
 * Feature to set time of the todo
 * Feature to remind the user about his/her todo through email
+* Sort the todo from newest to oldest
 
 License
 
