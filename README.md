@@ -14,6 +14,12 @@ Feature Overview
 * Edit todo's
 * Delete todo's
 
+Road Map for version 2.0
+* Javascript Validations
+* User Management
+* Feature to set time of the todo
+* Feature to remind the user about his/her todo through email
+
 License
 
 # DON'T BE A DICK PUBLIC LICENSE
