@@ -13,7 +13,7 @@ class Todos_Controller extends Base_Controller
 	 */
 	public function get_index()
 	{
-		$this->layout->content = View::make('todos.index')->with('todos', Todo::all());
+		$this->layout->content = View::make('todos.index')->with('todos', Todo::order_by('created_at', 'desc')->get());
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Todos_Controller extends Base_Controller
 		$todo->name = Input::get('name');
 
 		if ($todo->save()) {
-			return Response::eloquent(Todo::all());
+			return Response::eloquent(Todo::order_by('created_at', 'desc')->get());
 		} else {
 			return 'error';
 		}
@@ -54,7 +54,7 @@ class Todos_Controller extends Base_Controller
 		$todo = Todo::find(Input::get('id'));
 
 		if ($todo->delete()) {
-			return Response::eloquent(Todo::all());
+			return Response::eloquent(Todo::order_by('created_at', 'desc')->get());
 		} else {
 			return 'error';
 		}
