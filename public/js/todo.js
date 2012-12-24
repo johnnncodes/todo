@@ -2,8 +2,6 @@
 
 	$(function() { // document.ready 
 
-		// var todosUrl = 'http://makingfriends.elementfx.com/todo/public/index.php/todos/'; // change this to your URL
-		 var todosUrl = 'http://localhost/todo/public/todos/'; // change this to your URL
     	// initialize
     	bindAllTabs(); // bind the .editable in initialization
 
@@ -22,7 +20,8 @@
 		     	// save data
 				$.ajax({
 				  	type: "POST",
-				  	url: todosUrl,
+				  	// url: todosUrl,
+				  	url: 'todos',
 				  	data: { name: value, id: $(this).data('id'), _method: 'PUT' }
 				}).done(function( data ) {
 
@@ -34,9 +33,6 @@
 				  	if (data === 'error') {
 				  		console.log('Updating in database failed. Please report error to basco.johnkevin@gmail.com');
 				  	}
-
-		
-
 
 				});
 
@@ -74,13 +70,12 @@
     		// save data in the server
     		$.ajax({
 			  	type: "POST",
-			  	url: todosUrl,
+			  	url: 'todos',
 			  	dataType: "json", // parse json to js object automatically
 			  	data: { name: name }
 			}).done(function( data ) {
 
-			  	//console.log(data);
-			  	//console.log('hello');
+			  	console.log(data);	  	
 
 			  	if (data !== 'failed') { // if validation in the server didn't failed
 
@@ -104,10 +99,7 @@
 
 				  	});
 
-
 				  	// console.log(list);
-
-
 
 				  	$('ul#todo-list').html(list);
 
@@ -133,7 +125,7 @@
 
 			});
 
-    		return false; // to avoid submitting the form
+    		 return false; // to avoid submitting the form
 
     	});
 
@@ -157,7 +149,7 @@
 			// delete the list
 			$.ajax({
 			  	type: "POST",
-			  	url: todosUrl,
+			  	url: 'todos',
 			  	dataType: "json",
 			  	data: { id: id, _method: 'DELETE' }
 			}).done(function( data ) {
@@ -200,10 +192,6 @@
 				  	console.log('Deleting data in database failed. Please report error to basco.johnkevin@gmail.com');
 			  	}
 	
-			  	
-
-    			
-
 			});
 
     		return false;
