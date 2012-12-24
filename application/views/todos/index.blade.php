@@ -9,7 +9,7 @@
 		
 
 		{{ Form::open('todos', 'POST', array('id' => 'todo-form')) }}
-			{{ Form::text('name', '', array('id' => 'name', 'placeholder' => 'What needs to be done?')) }}
+			{{ Form::text('name', '', array('id' => 'name', 'placeholder' => 'What needs to be done?', 'autofocus' => 'autofocus')) }}
 		{{ Form::close() }}
 	</div>
 
