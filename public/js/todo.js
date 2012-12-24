@@ -2,8 +2,8 @@
 
 	$(function() { // document.ready 
 
-		//var todosUrl = 'http://makingfriends.elementfx.com/todo/public/index.php/todos/'; // change this to your URL
-		var todosUrl = 'http://localhost/todo/public/todos/'; // change this to your URL
+		// var todosUrl = 'http://makingfriends.elementfx.com/todo/public/index.php/todos/'; // change this to your URL
+		 var todosUrl = 'http://localhost/todo/public/todos/'; // change this to your URL
     	// initialize
     	bindAllTabs(); // bind the .editable in initialization
 
@@ -75,14 +75,20 @@
     		$.ajax({
 			  	type: "POST",
 			  	url: todosUrl,
+			  	dataType: "json", // parse json to js object automatically
 			  	data: { name: name }
 			}).done(function( data ) {
 
-			  	console.log(data);
+			  	//console.log(data);
+			  	//console.log('hello');
 
 			  	if (data !== 'failed') { // if validation in the server didn't failed
 
 			  		var list = '';
+
+			  		// data = $.parseJSON(data); // quick fix for FireFox but breaks in oher browsers, 
+			  									 // so I added dataType: "json", in the ajax request above 
+			  									 // to let jquery automatigically parse the JSON to a js object
 
 				  	$.each(data, function(i, data) {
 
@@ -98,7 +104,10 @@
 
 				  	});
 
+
 				  	// console.log(list);
+
+
 
 				  	$('ul#todo-list').html(list);
 
@@ -149,6 +158,7 @@
 			$.ajax({
 			  	type: "POST",
 			  	url: todosUrl,
+			  	dataType: "json",
 			  	data: { id: id, _method: 'DELETE' }
 			}).done(function( data ) {
 
