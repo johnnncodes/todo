@@ -37,7 +37,7 @@
 
 </div>
 
-<p id="footer-text">Created By: John Kevin M. Basco</p>
+<p id="footer-text"><a href="https://www.odesk.com/users/Web-and-Mobile-Developer_~01f1dbcff7ace73fae?tot=1&pos=0" target="_blank">Created By: John Kevin M. Basco</a></p>
 
 <!--
 // End of file

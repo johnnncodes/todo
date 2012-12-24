@@ -133,8 +133,11 @@ body {
 
 #footer-text {
 	text-align: center;
-	color: #555;
 	margin-top: 10px;
+}
+
+#footer-text a {
+	color: #555;
 }
 
 #ajax-loader{
