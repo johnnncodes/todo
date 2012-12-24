@@ -2,6 +2,11 @@
 
 class Todos_Controller extends Base_Controller 
 {
+	public function __construct()
+    {
+    	header('Access-Control-Allow-Origin: *'); // allow cross domain origin access
+        parent::__construct();
+    }
 
 	/**
 	 * Handles showing lists
@@ -37,7 +42,7 @@ class Todos_Controller extends Base_Controller
 		if ($todo->save()) {
 			return Response::eloquent(Todo::all());
 		} else {
-			return 'failed';
+			return 'error';
 		}
 	}
 
@@ -50,8 +55,9 @@ class Todos_Controller extends Base_Controller
 
 		if ($todo->delete()) {
 			return Response::eloquent(Todo::all());
+		} else {
+			return 'error';
 		}
-
 	}
 
 	/**
@@ -65,7 +71,9 @@ class Todos_Controller extends Base_Controller
 		$todo->name = Input::get('name');
 	
 		if ($todo->save()) {
-			return 'good';
+			return 'success';
+		} else {
+			return 'error';
 		}
 	}
 
