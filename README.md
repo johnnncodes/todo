@@ -9,8 +9,13 @@ Live Demo - http://makingfriends.elementfx.com/todo/public/
 
 Screenshot: http://imageshack.us/photo/my-images/811/webappg.png/
 
+Instructions:
+* To add a todo - Type the todo in the textbox and press enter to save
+* To edit a todo - Click the todo and it will become a textbox, edit the todo and press enter to save
+* To delete a todo - Click the x icon in the right side of the todo
+
 Feature Overview
-* Add todo's
+* Add todo's 
 * Edit todo's
 * Delete todo's
 
