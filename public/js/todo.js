@@ -2,6 +2,13 @@
 
 	$(function() { // document.ready 
 
+		/**
+		 * PHP html_entities() implementation in javascript
+		 */
+		function htmlEntities(str) {
+		    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+		}
+
     	// initialize
     	bindAllTabs(); // bind the .editable in initialization
 
@@ -149,7 +156,7 @@
 				  		list = list + 
 				  		"<li id=" + data.id + ">"
 				  		+ "<div class='view'>"
-				  		+ "<label class='edit " + done + "' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+				  		+ "<label class='edit " + done + "' id='todo-" + data.id + "' data-id='" + data.id + "'>" + htmlEntities(data.name) + "</label>"
 				  		+ "<a href='#' class='toggle-btn " + active + "' data-id='" + data.id + "'>&#10003;</a>"
 				  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
 				  		+ "</div>";
@@ -232,7 +239,7 @@
 				  		list = list + 
 				  		"<li id=" + data.id + ">"
 				  		+ "<div class='view'>"
-				  		+ "<label class='edit " + done + "' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+				  		+ "<label class='edit " + done + "' id='todo-" + data.id + "' data-id='" + data.id + "'>" + htmlEntities(data.name) + "</label>"
 				  		+ "<a href='#' class='toggle-btn " + active + "' data-id='" + data.id + "'>&#10003;</a>"
 				  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
 				  		+ "</div>";
