@@ -39,7 +39,7 @@
 			    return(value);
 
 			}, { 
-					cssclass : 'editable',
+					cssclass : 'editable'
 			     	// type    : 'textarea',
 			    	// submit  : 'OK',
 			});
