@@ -137,12 +137,20 @@
 
 				  	$.each(data, function(i, data) {
 
-				  		// console.log(data.name);
+				  		 console.log(data.name);
+
+				  		 if (data.done == 1) {
+				  		 	var done = 'done';
+				  		 	var active = 'active';
+				  		 };
+
+
 
 				  		list = list + 
 				  		"<li id=" + data.id + ">"
 				  		+ "<div class='view'>"
-				  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+				  		+ "<label class='edit " + done + "' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+				  		+ "<a href='#' class='toggle-btn " + active + "' data-id='" + data.id + "'>&#10003;</a>"
 				  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
 				  		+ "</div>";
 				  		+ "<li>";
@@ -214,10 +222,18 @@
 
 				  		// console.log(data.name);
 
+
+				  		if (data.done == 1) {
+				  		 	var done = 'done';
+				  		 	var active = 'active';
+				  		};
+
+
 				  		list = list + 
 				  		"<li id=" + data.id + ">"
 				  		+ "<div class='view'>"
-				  		+ "<label class='edit' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+				  		+ "<label class='edit " + done + "' id='todo-" + data.id + "' data-id='" + data.id + "'>" + data.name + "</label>"
+				  		+ "<a href='#' class='toggle-btn " + active + "' data-id='" + data.id + "'>&#10003;</a>"
 				  		+ "<a href='#' class='delete-btn' data-id='" + data.id + "'>x</a>"
 				  		+ "</div>";
 				  		+ "<li>";
