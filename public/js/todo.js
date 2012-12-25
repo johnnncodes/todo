@@ -46,6 +46,56 @@
 
 		}
 
+
+		/**
+		 * toggle mark as done/undone
+		 */
+		$('ul#todo-list').on('click', 'a.toggle-btn', function(event) {
+
+			//console.log('toggle');
+
+			$this = $(this);
+
+			var id = $this.data('id');
+
+			if ($this.hasClass('active')) {
+
+				$this.removeClass('active');
+
+				$('ul#todo-list').find('label#todo-' + id).removeClass('done');
+
+				// save data in the server
+	    		$.ajax({
+				  	type: "POST",
+				  	url: 'todos',
+				  	dataType: "json", // parse json to js object automatically
+				  	data: { id: id, action: 'toggle', _method: 'PUT' }
+				}).done(function( data ) { 
+					console.log(data);
+				});
+
+			} else {
+
+				$this.addClass('active');
+
+				$('ul#todo-list').find('label#todo-' + id).addClass('done');
+
+				// save data in the server
+	    		$.ajax({
+				  	type: "POST",
+				  	url: 'todos',
+				  	dataType: "json", // parse json to js object automatically
+				  	data: { id: id, action: 'toggle', _method: 'PUT' }
+				}).done(function( data ) { 
+					console.log(data);
+				});
+
+			};
+
+			return false;
+
+		});
+
     	/**
     	 * add
     	 */
