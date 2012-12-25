@@ -65,16 +65,40 @@ class Todos_Controller extends Base_Controller
 	 */
 	public function put_index()
 	{
-		$id = Input::get('id');
 
-		$todo = Todo::find($id);
-		$todo->name = Input::get('name');
-	
-		if ($todo->save()) {
-			return 'success';
-		} else {
-			return 'error';
+		$action = Input::get('action');
+
+		if ($action === 'toggle') {
+			$id = Input::get('id');
+			$todo = Todo::find($id);
+
+			if ($todo->done == 1) {
+				$todo->done = 0;
+			} else {
+				$todo->done = 1;
+			}
+
+			if ($todo->save()) {
+				return Response::json('success');
+			} else {
+				return Response::json('error');
+			}
+
+		} else { // action is not equal to toggle, so we will assume the action is editing the name of the todo
+
+			$id = Input::get('id');
+			$todo = Todo::find($id);
+			$todo->name = Input::get('name');
+		
+			if ($todo->save()) {
+				return Response::json('success');
+			} else {
+				return Response::json('error');
+			}
+
 		}
+
+		
 	}
 
 

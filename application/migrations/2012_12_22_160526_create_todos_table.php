@@ -14,6 +14,8 @@ class Create_Todos_Table {
 		    $table->increments('id');
 		    $table->string('name');
 		    $table->timestamps();
+		    $table->integer('done');
+
 		});
 	}
 
