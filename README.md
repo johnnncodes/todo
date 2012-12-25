@@ -29,6 +29,7 @@ Road Map for version 2.0
 * Feature to set time of the todo
 * Feature to remind the user about his/her todo through email
 * Sort the todo from newest to oldest
+* Support IE7 - almost done. only bug is when adding a todo
 
 License
 
