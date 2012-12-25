@@ -72,7 +72,7 @@ class Todos_Controller extends Base_Controller
 			$id = Input::get('id');
 			$todo = Todo::find($id);
 
-			if ($todo->done === 1) {
+			if ($todo->done == 1) {
 				$todo->done = 0;
 			} else {
 				$todo->done = 1;
