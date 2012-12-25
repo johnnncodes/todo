@@ -119,6 +119,21 @@ body {
 	font-weight: bold;
 }
 
+#todo-list .toggle-btn {
+	position: absolute;
+	right: 25px;
+	top: 15px;
+	font-weight: bold;
+}
+
+#todo-list .done {
+	text-decoration: line-through;
+}
+
+#todo-list .active {
+	color: red;
+}
+
 .editable {
 	margin: 0;
 }

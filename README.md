@@ -1,7 +1,7 @@
 todo
 ====
 
-Version 1.4
+Version 1.5
 
 A simple web app for managing todo's. This web app only provides simple functionalities. This is only made for fun in learning git workflow, jquery/javascript and Laravel 3. The code is open sourced to allow public contribution and to allow other dev's have an open source code to read for learning purposes.
 
@@ -13,11 +13,15 @@ Instructions:
 * To add a todo - Type the todo in the textbox and press enter to save
 * To edit a todo - Click the todo and it will become a textbox, edit the todo and press enter to save
 * To delete a todo - Click the x icon in the right side of the todo
+* To toggle a todo as done/not yet done - Click the check icon in the right side of the todo
 
 Feature Overview
 * Add todo's 
 * Edit todo's
 * Delete todo's
+* Toggle a todo as done/not yet done
+
+This web app supports up to: IE8+
 
 Road Map for version 2.0
 * Javascript Validations

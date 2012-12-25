@@ -25,7 +25,8 @@
 			
 		    	<li id="todo-{{ $todo->id }}">
 		    		<div class="view">
-		    			<label class="edit" id="todo-{{ $todo->id }}" data-id="{{ $todo->id }}">{{ $todo->name }}</label>
+		    			<label class="edit {{ ($todo->done == 1) ? 'done' : '' }}" id="todo-{{ $todo->id }}" data-id="{{ $todo->id }}">{{ $todo->name }}</label>
+		    			<a href="#" class="toggle-btn {{ ($todo->done == 1) ? 'active' : '' }}" data-id="{{ $todo->id }}">&#10003;</a>
 		    			<a href="#" class="delete-btn" data-id="{{ $todo->id }}">x</a>
 		    		</div>
 		    	</li>
